@@ -1,0 +1,56 @@
+form {
+    display: flex;
+    text-align: left;
+}
+
+input {
+    margin: 10px 0;
+    margin-right: 20px;
+}
+
+.registration-title {
+    margin: 20px 0;
+}
+
+.registration-input {
+    margin: 20px 0;
+}
+
+.input-container {
+    display: flex;
+}
+
+.input-email {
+    flex-direction: column;
+}
+
+.input-password {
+    flex-direction: column;
+}
+
+.input-password-content {
+    display: flex;
+}
+
+.input-password-info {
+    padding-top: 10px;
+    color: var(--font-light);
+    font-size: 0.8rem;
+}
+
+.registration-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    padding-left: 50px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 100%;
+}

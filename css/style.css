@@ -1,0 +1,126 @@
+:root {
+    --font-dark: #1c1c1c;
+    --font-light: #4c4c4c;
+    --background: #eeeeee;
+    --shadow-small-outside: -5px -5px 5px 0 rgba(255, 255, 255, 1),
+        5px 5px 5px 0 rgba(0, 0, 0, 0.05);
+    --shadow-small-inside: inset -5px -5px 5px 0 rgba(255, 255, 255, 0.4),
+        inset 5px 5px 5px 0 rgba(0, 0, 0, 0.05);
+    --box-shadow-big: -12px -12px 12px 0 rgba(255, 255, 255, 1),
+        12px 12px 12px 0 rgba(0, 0, 0, 0.05);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: var(--background);
+    color: var(--font-dark);
+}
+
+form {
+    position: absolute;
+    min-width: 400px;
+    border-radius: 10px;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    box-shadow: var(--box-shadow-big);
+    margin: 0;
+    background-color: var(--background);
+}
+
+h1 {
+    color: var(--font-dark);
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+a {
+    font-size: 0.9rem;
+    color: #ffae00;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+p {
+    margin: 0;
+}
+
+input {
+    font-size: 1rem;
+    background: none;
+    outline: none;
+    border: none;
+    margin: 10px 0;
+    padding: 14px 10px;
+    border-radius: 5px;
+    color: var(--font-dark);
+    box-shadow: var(--shadow-small-outside);
+}
+
+input:focus {
+    box-shadow: var(--shadow-small-inside);
+}
+
+input:focus::placeholder {
+    color: #ffae00;
+}
+
+input[type="submit"] {
+    box-shadow: none;
+    border: 2px solid #ffae00;
+    padding: 10px 20px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #ffae00;
+}
+
+.content {
+    position: relative;
+}
+
+.checkbox-label input {
+    display: none;
+}
+
+.checkbox-label .checkbox-span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    box-shadow: var(--shadow-small-outside);
+    border-radius: 5px;
+}
+
+.checkbox-label input:checked ~ .checkbox-span {
+    box-shadow: var(--shadow-small-inside);
+}
+
+.error {
+    display: flex;
+    color: #df832e;
+}
+
+.error-message {
+    padding-left: 10px;
+}
+
+label {
+    text-align: center;
+    display: block;
+    position: relative;
+    margin: 15px 0;
+}

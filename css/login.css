@@ -1,0 +1,16 @@
+.login-title {
+    margin: 20px 0;
+}
+
+.login-input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.login-footer {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
