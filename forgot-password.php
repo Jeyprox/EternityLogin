@@ -1,5 +1,5 @@
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=Eternity', 'eternity', 'EternityWebsite');
+include "database-login.php";
 
 function random_string()
 {
@@ -52,24 +52,31 @@ if (isset($_GET['send'])) {
     }
   }
 }
-
-if ($showForm) :
 ?>
 
-  <h1>Forgot Password</h1>
-  <p>Enter your E-Mail to request a new password!</p>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forgot Password - EternityEsports</title>
+</head>
+<body>
+<?php if ($showForm) { ?>
+    <h1>Forgot Password</h1>
+    <p>Enter your E-Mail to request a new password!</p>
+  
+    <?php
+    if (isset($error) && !empty($error)) {
+      echo $error;
+    }
+    ?>
+    <form action="?send=1" method="post">
+      <input type="email" placeholder="E-Mail" name="email" value="<?php echo isset($_POST['email']) ? htmlentities($_POST['email']) : ''; ?>">
+      <input type="submit" value="Reset Password">
+    </form>
   <?php
-  if (isset($error) && !empty($error)) {
-    echo $error;
-  }
+  } else {}
   ?>
-
-  <form action="?send=1" method="post">
-    <input type="email" placeholder="E-Mail" name="email" value="<?php echo isset($_POST['email']) ? htmlentities($_POST['email']) : ''; ?>">
-    <input type="submit" value="Get Password">
-  </form>
-
-<?php
-endif; //Endif von if($showForm)
-?>
+</body>
+</html>

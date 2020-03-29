@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-$pdo = new PDO('mysql:host=localhost;dbname=Eternity', 'eternity', 'EternityWebsite');
+include "database-login.php";
 
 $errorMessage;
 $showPage = true;

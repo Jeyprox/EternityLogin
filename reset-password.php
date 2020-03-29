@@ -1,5 +1,5 @@
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=Eternity', 'eternity', 'EternityWebsite');
+include "database-login.php";
 
 if (!isset($_GET['userid']) || !isset($_GET['code'])) {
   die("The reset code that was transfered with this Link is not valid!");

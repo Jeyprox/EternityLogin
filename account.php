@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-$pdo = new PDO('mysql:host=localhost;dbname=Eternity', 'eternity', 'EternityWebsite');
+include "database-login.php";
 
 $showpage = true;
 
@@ -90,7 +88,7 @@ if (!isset($_SESSION['userid'])) {
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/account.css">
   <script src="https://kit.fontawesome.com/825b250593.js" crossorigin="anonymous"></script>
-  <title>My Account</title>
+  <title>My Account - EternityEsports</title>
 </head>
 
 <body>
