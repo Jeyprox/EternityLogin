@@ -1,0 +1,104 @@
+.team-select-box,
+.input-team {
+    position: relative;
+    width: 200px;
+    margin: 0;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-small-outside);
+}
+
+.input-team {
+    margin: 10px 0;
+    text-align: left;
+    width: 100%;
+}
+
+.select-button,
+.player-team-button {
+    position: relative;
+    height: 1rem;
+    padding: 12px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #eeeeee;
+}
+
+.player-team-button {
+    border-radius: 5px;
+    padding: 14px 10px;
+}
+
+.player-team-value span {
+    color: #8e8e8e;
+}
+
+.select-button-active,
+.player-team-button-active {
+    border-radius: 10px 10px 0 0;
+}
+
+.select-button-active span,
+.player-team-button-active {
+    color: var(--accent-color);
+}
+
+.arrows {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 12px;
+    padding: 9px 14px;
+}
+
+.arrows i {
+    display: block;
+    font-size: 12px;
+    color: #b4b4b4;
+    height: 50%;
+}
+
+.team-selection-hidden,
+.player-team-selection-hidden {
+    display: none;
+}
+
+.team-selection,
+.player-team-selection {
+    position: absolute;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    cursor: pointer;
+    background-color: #eeeeee;
+}
+
+.player-team-selection {
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.team-selection-submit,
+.player-team-selection-container {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    transition: 0.2s;
+    font-size: 16px;
+    padding: 12px 14px;
+    background-color: transparent;
+    border: none;
+    border-top: 1px solid #b4b4b4;
+    outline: none;
+    width: 100%;
+    height: 100%;
+}
+
+.player-team-selection-container {
+    box-sizing: border-box;
+}
+
+.team-selection-submit:last-child,
+.player-team-selection-container:last-child {
+    border-radius: 0 0 10px 10px;
+}

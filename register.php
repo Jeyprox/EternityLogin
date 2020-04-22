@@ -123,8 +123,9 @@ if (isset($_POST['submit-form'])) {
 
 <head>
   <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/register.css">
   <script src="https://kit.fontawesome.com/825b250593.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/register.css">
+  <link rel="stylesheet" href="./css/form.css">
   <title>Registration - EternityEsports</title>
 </head>
 
@@ -137,35 +138,33 @@ if (isset($_POST['submit-form'])) {
       </div>
 
       <div class="registration-input">
-        <div class="input-container input-names">
-          <div class="input-username">
-            <input type="text" placeholder="Username" maxlength="32" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '' ?>">
-            <?php
-            if (isset($userError)) {
-            ?>
-              <div class="error">
-                <i class="fas fa-exclamation-circle"></i>
-                <p class="error-message"><?php echo $userError ?></p>
-              </div>
-            <?php
-            }
-            ?>
-          </div>
-          <div class="input-firstname">
-            <input type="text" placeholder="First Name" maxlength="32" name="firstname" value="<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : '' ?>">
-            <?php
-            if (isset($nameError)) {
-            ?>
-              <div class="error">
-                <i class="fas fa-exclamation-circle"></i>
-                <p class="error-message"><?php echo $nameError ?></p>
-              </div>
-            <?php
-            }
-            ?>
-          </div>
+        <div class="input-username">
+          <input type="text" placeholder="Username" maxlength="32" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : '' ?>">
+          <?php
+          if (isset($userError)) {
+          ?>
+            <div class="error">
+              <i class="fas fa-exclamation-circle"></i>
+              <p class="error-message"><?php echo $userError ?></p>
+            </div>
+          <?php
+          }
+          ?>
         </div>
-        <div class="input-container input-email">
+        <div class="input-firstname">
+          <input type="text" placeholder="First Name" maxlength="32" name="firstname" value="<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : '' ?>">
+          <?php
+          if (isset($nameError)) {
+          ?>
+            <div class="error">
+              <i class="fas fa-exclamation-circle"></i>
+              <p class="error-message"><?php echo $nameError ?></p>
+            </div>
+          <?php
+          }
+          ?>
+        </div>
+        <div class="input-email">
           <input type="email" placeholder="E-Mail" maxlength="255" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>">
           <?php
           if (isset($emailError)) {
@@ -178,37 +177,36 @@ if (isset($_POST['submit-form'])) {
           }
           ?>
         </div>
-        <div class="input-container input-password">
-          <div class="input-password-content">
-            <div class="input-password">
-              <input type="password" placeholder="Password" maxlength="128" name="passwort" value="<?php echo isset($_POST['password']) ? $_POST['password'] : '' ?>">
-              <?php
-              if (isset($passwordError)) {
-              ?>
-                <div class="error">
-                  <i class="fas fa-exclamation-circle"></i>
-                  <p class="error-message"><?php echo $passwordError ?></p>
-                </div>
-              <?php
-              }
-              ?>
+        <div class="input-password">
+          <input class="password" type="password" placeholder="Password" maxlength="128" name="passwort" value="<?php echo isset($_POST['password']) ? $_POST['password'] : '' ?>">
+          <?php
+          if (isset($passwordError)) {
+          ?>
+            <div class="error">
+              <i class="fas fa-exclamation-circle"></i>
+              <p class="error-message"><?php echo $passwordError ?></p>
             </div>
-            <div class="input-repeat-password">
-              <input type="password" placeholder="Repeat Password" maxlength="128" name="passwort2" value="<?php echo isset($_POST['password2']) ? $_POST['password2'] : '' ?>">
-              <?php
-              if (isset($repeatPasswordError)) {
-              ?>
-                <div class="error">
-                  <i class="fas fa-exclamation-circle"></i>
-                  <p class="error-message"><?php echo $repeatPasswordError ?></p>
-                </div>
-              <?php
-              }
-              ?>
-            </div>
-          </div>
-          <p class="input-password-info">Use a minimum of 8 characters with a mix of letters, numbers and symbols</p>
+          <?php
+          }
+          ?>
         </div>
+        <div class="input-repeat-password">
+          <input class="password" type="password" placeholder="Repeat Password" maxlength="128" name="passwort2" value="<?php echo isset($_POST['password2']) ? $_POST['password2'] : '' ?>">
+          <?php
+          if (isset($repeatPasswordError)) {
+          ?>
+            <div class="error">
+              <i class="fas fa-exclamation-circle"></i>
+              <p class="error-message"><?php echo $repeatPasswordError ?></p>
+            </div>
+          <?php
+          }
+          ?>
+        </div>
+        <div class="input-password-visibility">
+          <i class="input-password-icon fas fa-eye-slash"></i>
+        </div>
+        <p class="input-password-info">Use a minimum of 8 characters with a mix of letters, numbers and symbols</p>
         <?php
         if (isset($generalError)) {
         ?>
@@ -233,7 +231,8 @@ if (isset($_POST['submit-form'])) {
       <img src="./img/EternityLogo.png" alt="Logo">
     </div>
   </form>
-
+  <script src="./js/jquery-3.4.1.min.js"></script>
+  <script src="./js/register.js"></script>
 </body>
 
 </html>

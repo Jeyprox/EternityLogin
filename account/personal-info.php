@@ -1,11 +1,11 @@
 <?php
-include "database-login.php";
+include "../database-login.php";
 
 $showpage = true;
 
 if (!isset($_SESSION['userid'])) {
   $showpage = false;
-  echo '<p class="error">Please <a href="login.php">log in</a>.</p>';
+  echo '<p class="error">Please <a href="../login.php">log in</a>.</p>';
 } else {
   // Get User ID
   $userid = $_SESSION['userid'];
@@ -85,8 +85,8 @@ if (!isset($_SESSION['userid'])) {
 <html>
 
 <head>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/account.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/account.css">
   <script src="https://kit.fontawesome.com/825b250593.js" crossorigin="anonymous"></script>
   <title>My Account - EternityEsports</title>
 </head>
@@ -96,15 +96,30 @@ if (!isset($_SESSION['userid'])) {
   if ($showpage) {
   ?>
     <div class="settings">
-      <div class="sidebar">
-        <a class="account-menu" href="./account/applications.php">Applications</a>
-        <a class="logout" href="logout.php">Logout</a>
-      </div>
+      <nav class="sidebar">
+        <ul class="sidebar-nav">
+          <li class="personal-info sidebar-item">
+            <i class="fas fa-id-card sidebar-icon"></i>
+            <a class="sidebar-link" href="./personal-info.php">Personal Info</a>
+          </li>
+          <li class="applications sidebar-item">
+            <i class="fas fa-user-tie sidebar-icon"></i>
+            <a class="sidebar-link" href="./applications.php">Applications</a>
+          </li>
+          <li class="logout sidebar-item">
+            <i class="fas fa-sign-out-alt sidebar-icon"></i>
+            <a class="sidebar-link" href="../logout.php">Logout</a>
+          </li>
+        </ul>
+      </nav>
       <div class="personal-info-container">
         <form action="account.php" method="post">
           <div class="change-content">
             <p class="change-title">Name</p>
-            <input type="text" maxlength="32" name="firstname" value=<?php echo $user['firstname'] ?>>
+            <div class="change-input">
+              <input type="text" maxlength="32" name="firstname" value=<?php echo $user['firstname'] ?>>
+              <i class="fas fa-pen input-edit-icon"></i>
+            </div>
             <?php
             if (isset($nameError)) {
             ?>
@@ -118,7 +133,10 @@ if (!isset($_SESSION['userid'])) {
           </div>
           <div class="change-content">
             <p class="change-title">Username</p>
-            <input type="text" maxlength="32" name="username" value=<?php echo $user['username'] ?>>
+            <div class="change-input">
+              <input type="text" maxlength="32" name="username" value=<?php echo $user['username'] ?>>
+              <i class="fas fa-pen input-edit-icon"></i>
+            </div>
             <?php
             if (isset($userError)) {
             ?>
@@ -132,7 +150,10 @@ if (!isset($_SESSION['userid'])) {
           </div>
           <div class="change-content">
             <p class="change-title">E-Mail</p>
-            <input type="email" maxlength="255" name="email" value=<?php echo $user['email'] ?>>
+            <div class="change-input">
+              <input type="email" maxlength="255" name="email" value=<?php echo $user['email'] ?>>
+              <i class="fas fa-pen input-edit-icon"></i>
+            </div>
             <?php
             if (isset($emailError)) {
             ?>
@@ -144,7 +165,15 @@ if (!isset($_SESSION['userid'])) {
             }
             ?>
           </div>
-
+          <a href="../password-verification.php" class="change-personal-info">
+            <div class="change-content">
+              <p class="change-title">Password</p>
+              <p class="change-value">••••••••</p>
+            </div>
+            <div class="change-arrow">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </a>
           <input type="hidden" name="submit-form" value="1">
           <input type="submit" value="Save Changes">
           <?php
@@ -158,15 +187,6 @@ if (!isset($_SESSION['userid'])) {
           }
           ?>
         </form>
-        <a href="./password-verification.php" class="change-personal-info">
-          <div class="change-content">
-            <p class="change-title">Password</p>
-            <p class="change-value">••••••••</p>
-          </div>
-          <div class="change-arrow">
-            <i class="fas fa-chevron-right"></i>
-          </div>
-        </a>
       </div>
     </div>
   <?php
@@ -174,5 +194,4 @@ if (!isset($_SESSION['userid'])) {
   }
   ?>
 </body>
-
 </html>

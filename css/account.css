@@ -1,3 +1,25 @@
+.sidebar-nav {
+    list-style-type: none;
+}
+
+.sidebar-item {
+    margin: 20px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-icon {
+    font-size: 1.2rem;
+    width: 30px;
+    padding-right: 10px;
+}
+
+.sidebar-link {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--font-dark);
+}
+
 .personal-info-container {
     display: flex;
     flex-direction: column;
@@ -9,16 +31,26 @@
 
 .change-content {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.logout {
-    display: block;
-    width: 200px;
-    padding: 10px 5px;
-    border: 2px solid #ffae00;
-    margin: 10px 0;
-    text-align: center;
-    border-radius: 24px;
-    color: #1c1c1c;
-    font-size: 1rem;
+.change-input {
+    position: relative;
+    display: flex;
+}
+
+.change-input input {
+    width: 100%;
+}
+
+.change-input input:focus ~ .input-edit-icon {
+    color: #ffae00;
+}
+
+.input-edit-icon {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translate(-5%, -50%);
 }

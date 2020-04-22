@@ -3,33 +3,44 @@ form {
     text-align: left;
 }
 
-input {
-    margin: 10px 0;
-    margin-right: 20px;
-}
-
 .registration-title {
     margin: 20px 0;
 }
 
 .registration-input {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 500px;
     margin: 20px 0;
 }
 
-.input-container {
-    display: flex;
+.input-username,
+.input-firstname {
+    flex: 0 0 48%;
 }
 
 .input-email {
-    flex-direction: column;
+    flex: 1 0 100%;
 }
 
-.input-password {
-    flex-direction: column;
+.input-password,
+.input-repeat-password {
+    flex: 0 0 42%;
 }
 
-.input-password-content {
+.input-password-visibility {
+    flex: 0 0 5%;
     display: flex;
+    justify-content: center;
+}
+
+.input-password-icon {
+    margin: 20px 0;
+    cursor: pointer;
+    color: var(--font-light);
+    width: 35px;
+    font-size: 1.6rem;
 }
 
 .input-password-info {

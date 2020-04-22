@@ -59,12 +59,12 @@ if (isset($_GET['send'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/form.css">
   <title>Forgot Password - EternityEsports</title>
 </head>
 <body>
 <?php if ($showForm) { ?>
-    <h1>Forgot Password</h1>
-    <p>Enter your E-Mail to request a new password!</p>
   
     <?php
     if (isset($error) && !empty($error)) {
@@ -72,8 +72,10 @@ if (isset($_GET['send'])) {
     }
     ?>
     <form action="?send=1" method="post">
-      <input type="email" placeholder="E-Mail" name="email" value="<?php echo isset($_POST['email']) ? htmlentities($_POST['email']) : ''; ?>">
-      <input type="submit" value="Reset Password">
+      <h1>Forgot Password</h1>
+      <p>Enter your E-Mail to request a new password</p>
+      <input type="email" placeholder="E-Mail" name="email">
+      <input type="submit" value="Request Password">
     </form>
   <?php
   } else {}

@@ -46,10 +46,20 @@ if (isset($_GET['send'])) {
 }
 ?>
 
-<h1>Reset Password</h1>
-<form action="?send=1&amp;userid=<?php echo htmlentities($userid); ?>&amp;code=<?php echo htmlentities($code); ?>" method="post">
-  <input type="password" placeholder="New Password" name="passwort">
-  <input type="password" placeholder="Repeat Password" name="passwort2">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset Password - EternityEsports</title>
+</head>
+<body>
+  <h1>Reset Password</h1>
+  <form action="?send=1&amp;userid=<?php echo htmlentities($userid); ?>&amp;code=<?php echo htmlentities($code); ?>" method="post">
+    <input type="password" placeholder="New Password" name="passwort">
+    <input type="password" placeholder="Repeat Password" name="passwort2">
 
-  <input type="submit" value="Submit Password">
-</form>
+    <input type="submit" value="Submit Password">
+  </form>
+</body>
+</html>

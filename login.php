@@ -35,7 +35,7 @@ if (isset($_GET['login'])) {
     setcookie("identifier", $identifier, time() + (3600 * 24 * 365)); //1 year valid
     setcookie("securitytoken", $securitytoken, time() + (3600 * 24 * 365));
 
-    header('location: account.php');
+    header('location: account/personal-info.php');
   } else {
     $errorMessage = 'Invalid E-Mail or Password';
   }
@@ -46,6 +46,7 @@ if (isset($_GET['login'])) {
 
 <head>
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/form.css">
   <link rel="stylesheet" href="./css/login.css">
   <script src="https://kit.fontawesome.com/825b250593.js" crossorigin="anonymous"></script>
   <title>Log In - EternityEsports</title>

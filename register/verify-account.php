@@ -1,5 +1,5 @@
 <?php
-include "database-login.php";
+include "../database-login.php";
 
 $error = false;
 $errorMessage = array();
