@@ -1,11 +1,8 @@
 <?php
-include "database-login.php";
-
-$showpage = true;
+include "../database-login.php";
 
 if (!isset($_SESSION['userid'])) {
-  $showpage = false;
-  echo '<p class="error">Please <a href="login.php">log in</a>.</p>';
+  header("location: ../login.php");
 } else {
   // Get User ID
   $userid = $_SESSION['userid'];
@@ -35,13 +32,14 @@ if (!isset($_SESSION['userid'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="./css/form.css">
+  <link rel="stylesheet" href="../css/form.css">
   <title>Change Password - Eternity Esports</title>
 </head>
 <body>
   <form action="change-password.php" method="post">
+    <h1>Change Password</h1>
+    <p>For <?php echo $user['username'] ?></p>
     <input type="password" placeholder="New Password" maxlength="128" minlength="8" name="passwort" />
-    
     <input type="password" placeholder="Confirm Password" maxlength="128" minlength="8" name="passwort2" />
 
     <input type="hidden" name="submit-form" value="1">

@@ -1,11 +1,8 @@
 <?php
 include "../database-login.php";
 
-$showpage = true;
-
 if (!isset($_SESSION['userid'])) {
-  $showpage = false;
-  echo '<p class="error">Please <a href="../login.php">log in</a>.</p>';
+  header("location: ../login.php");
 } else {
   // Get User ID
   $userid = $_SESSION['userid'];
@@ -20,46 +17,45 @@ if (!isset($_SESSION['userid'])) {
     $email = $_POST['email'];
 
     $successMessage;
+    $errorMessages = array();
     $generalError;
     $emailError;
     $userError;
     $nameError;
     if ($firstname == null) {
-      $nameError = 'Enter a name';
+      array_push($errorMessages, "Enter a name");
       $error = true;
     }
     if ($username == null) {
-      $userError = 'Enter a username';
+      array_push($errorMessages, "Enter a username");
       $error = true;
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $emailError = 'Enter a valid E-Mail';
+      array_push($errorMessages, "Enter a valid E-Mail");
       $error = true;
     }
 
-    // Check for unique E-Mail
     if (!$error) {
-      if ($email !== $user['email']) {
-        $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-        $result = $statement->execute(array('email' => $email));
-        $userEmail = $statement->fetch();
-
-        if ($userEmail !== false) {
-          $emailError = 'E-Mail already registered';
-          $error = true;
-        }
-      }
-    }
-
-    // Check for unique Username
-    if (!$error) {
+      // Check for unique Username
       if ($username !== $user['username']) {
         $statement = $pdo->prepare("SELECT * FROM users WHERE username = :username");
         $result = $statement->execute(array('username' => $username));
         $userUsername = $statement->fetch();
 
         if ($userUsername !== false) {
-          $userError = 'Username already registered';
+          array_push($errorMessages, "Username aleady registered");
+          $error = true;
+        }
+      }
+
+      // Check for unique E-Mail
+      if ($email !== $user['email']) {
+        $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+        $result = $statement->execute(array('email' => $email));
+        $userEmail = $statement->fetch();
+
+        if ($userEmail !== false) {
+          array_push($errorMessages, "E-Mail already registered");
           $error = true;
         }
       }
@@ -71,10 +67,14 @@ if (!isset($_SESSION['userid'])) {
       $result = $statement->execute(array('email' => $email, 'username' => $username, 'firstname' => $firstname, 'userid' => $userid));
 
       if ($result) {
+        $statement = $pdo->prepare("SELECT * FROM users WHERE id = :userid");
+        $result = $statement->execute(array('userid' => $userid));
+        $user = $statement->fetch();
+
         $error = false;
         $successMessage = 'Successfully changed personal info';
       } else {
-        $generalError = 'Error while registering';
+        array_push($errorMessages, "Error while saving");
       }
     }
   }
@@ -85,113 +85,116 @@ if (!isset($_SESSION['userid'])) {
 <html>
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/account.css">
+  <link rel="stylesheet" href="../css/account/personal-info.css">
   <script src="https://kit.fontawesome.com/825b250593.js" crossorigin="anonymous"></script>
   <title>My Account - EternityEsports</title>
 </head>
 
 <body>
-  <?php
-  if ($showpage) {
-  ?>
-    <div class="settings">
-      <nav class="sidebar">
-        <ul class="sidebar-nav">
-          <li class="personal-info sidebar-item">
-            <i class="fas fa-id-card sidebar-icon"></i>
-            <a class="sidebar-link" href="./personal-info.php">Personal Info</a>
-          </li>
-          <li class="applications sidebar-item">
-            <i class="fas fa-user-tie sidebar-icon"></i>
-            <a class="sidebar-link" href="./applications.php">Applications</a>
-          </li>
-          <li class="logout sidebar-item">
-            <i class="fas fa-sign-out-alt sidebar-icon"></i>
-            <a class="sidebar-link" href="../logout.php">Logout</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="personal-info-container">
-        <form action="account.php" method="post">
-          <div class="change-content">
-            <p class="change-title">Name</p>
-            <div class="change-input">
-              <input type="text" maxlength="32" name="firstname" value=<?php echo $user['firstname'] ?>>
-              <i class="fas fa-pen input-edit-icon"></i>
-            </div>
-            <?php
-            if (isset($nameError)) {
-            ?>
-              <div class="error">
-                <i class="fas fa-exclamation-circle"></i>
-                <p class="error-message"><?php echo $nameError ?></p>
-              </div>
-            <?php
-            }
-            ?>
-          </div>
-          <div class="change-content">
-            <p class="change-title">Username</p>
-            <div class="change-input">
-              <input type="text" maxlength="32" name="username" value=<?php echo $user['username'] ?>>
-              <i class="fas fa-pen input-edit-icon"></i>
-            </div>
-            <?php
-            if (isset($userError)) {
-            ?>
-              <div class="error">
-                <i class="fas fa-exclamation-circle"></i>
-                <p class="error-message"><?php echo $userError ?></p>
-              </div>
-            <?php
-            }
-            ?>
-          </div>
-          <div class="change-content">
-            <p class="change-title">E-Mail</p>
-            <div class="change-input">
-              <input type="email" maxlength="255" name="email" value=<?php echo $user['email'] ?>>
-              <i class="fas fa-pen input-edit-icon"></i>
-            </div>
-            <?php
-            if (isset($emailError)) {
-            ?>
-              <div class="error">
-                <i class="fas fa-exclamation-circle"></i>
-                <p class="error-message"><?php echo $emailError ?></p>
-              </div>
-            <?php
-            }
-            ?>
-          </div>
-          <a href="../password-verification.php" class="change-personal-info">
-            <div class="change-content">
-              <p class="change-title">Password</p>
-              <p class="change-value">••••••••</p>
-            </div>
-            <div class="change-arrow">
-              <i class="fas fa-chevron-right"></i>
-            </div>
+  <div class="settings">
+    <nav class="sidebar">
+      <ul class="sidebar-nav">
+        <li class="home sidebar-item">
+          <a href="./home.php" class="sidebar-link">
+            <i class="fas fa-user sidebar-icon"></i>
+            <span class="sidebar-text">Home</span>
           </a>
-          <input type="hidden" name="submit-form" value="1">
-          <input type="submit" value="Save Changes">
-          <?php
-          if (isset($successMessage)) {
-          ?>
-            <div class="error">
-              <i class="fas fa-exclamation-circle"></i>
-              <p class="error-message"><?php echo $successMessage ?></p>
-            </div>
-          <?php
-          }
-          ?>
-        </form>
+        </li>
+        <li class="personal-info sidebar-item">
+          <a href="./personal-info.php" class="sidebar-link sidebar-link-active">
+            <i class="fas fa-id-card sidebar-icon"></i>
+            <span class="sidebar-text">Personal Info</span>
+          </a>
+        </li>
+        <li class="player-info sidebar-item">
+          <a href="./player-info.php" class="sidebar-link">
+            <i class="fas fa-user-cog sidebar-icon"></i>
+            <span class="sidebar-text">Player Info</span>
+          </a>
+        </li>
+        <li class="team-overview sidebar-item">
+          <a href="./team-overview.php" class="sidebar-link">
+            <i class="fas fa-users sidebar-icon"></i>
+            <span class="sidebar-text">Team Overview</span>
+          </a>
+        </li>
+        <li class="applications sidebar-item">
+          <a href="./applications.php" class="sidebar-link">
+            <i class="fas fa-user-tie sidebar-icon"></i>
+            <span class="sidebar-text">Applications</span>
+          </a>
+        </li>
+        <li class="logout sidebar-item">
+          <a href="../logout.php" class="sidebar-link">
+            <i class="fas fa-sign-out-alt sidebar-icon"></i>
+            <span class="sidebar-text">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="settings-container">
+      <div class="settings-title">
+        <h1>Personal Info</h1>
+        <p>Manage all the information about you and customise your account to your liking.</p>
       </div>
+      <form action="personal-info.php" method="post" class="settings-content">
+        <div class="personal-info-item">
+          <p class="change-title">Name</p>
+          <div class="change-input">
+            <input type="text" maxlength="32" name="firstname" value=<?php echo $user['firstname'] ?>>
+            <i class="fas fa-pen input-edit-icon"></i>
+          </div>
+        </div>
+        <div class="personal-info-item">
+          <p class="change-title">Username</p>
+          <div class="change-input">
+            <input type="text" maxlength="32" name="username" value=<?php echo $user['username'] ?>>
+            <i class="fas fa-pen input-edit-icon"></i>
+          </div>
+        </div>
+        <div class="personal-info-item">
+          <p class="change-title">E-Mail</p>
+          <div class="change-input">
+            <input type="email" maxlength="255" name="email" value=<?php echo $user['email'] ?>>
+            <i class="fas fa-pen input-edit-icon"></i>
+          </div>
+        </div>
+        <a href="../password-verification.php" class="personal-info-item">
+          <p class="change-title">Password</p>
+          <div class="change-input">
+            <p>••••••••</p>
+            <i class="fas fa-chevron-right input-edit-icon"></i>
+          </div>
+        </a>
+        <input type="hidden" name="submit-form" value="1">
+        <input type="submit" value="Save Changes" class="submit-input">
+        <?php
+        if (isset($successMessage)) {
+        ?>
+          <div class="success">
+            <i class="fas fa-check-circle"></i>
+            <p class="success-message"><?php echo $successMessage ?></p>
+          </div>
+        <?php
+        } else if($error) {
+          foreach ($errorMessages as $errorMessage) {
+        ?>
+          <div class="error">
+            <i class="fas fa-exclamation-circle"></i>
+            <p class="error-message"><?php echo $errorMessage ?></p>
+          </div>
+        <?php
+          }
+        }
+        ?>
+      </form>
     </div>
-  <?php
-  } else {
-  }
-  ?>
+  </div>
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/account.js"></script>
 </body>
 </html>

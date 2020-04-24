@@ -15,9 +15,6 @@ function random_string()
   return $str;
 }
 
-
-$showForm = true;
-
 if (isset($_GET['send'])) {
   if (!isset($_POST['email']) || empty($_POST['email'])) {
     $error = '<p class="error">Please enter a valid E-Mail</p>';
@@ -48,7 +45,6 @@ if (isset($_GET['send'])) {
 
       // Header to Homepage
       echo "A Link was sent to your E-Mail adress to change your password. Please use this link in the next 24 hours.";
-      $showForm = false;
     }
   }
 }
@@ -61,24 +57,19 @@ if (isset($_GET['send'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/form.css">
-  <title>Forgot Password - EternityEsports</title>
+  <title>Forgot Password</title>
 </head>
 <body>
-<?php if ($showForm) { ?>
-  
-    <?php
-    if (isset($error) && !empty($error)) {
-      echo $error;
-    }
-    ?>
-    <form action="?send=1" method="post">
-      <h1>Forgot Password</h1>
-      <p>Enter your E-Mail to request a new password</p>
-      <input type="email" placeholder="E-Mail" name="email">
-      <input type="submit" value="Request Password">
-    </form>
   <?php
-  } else {}
+  if (isset($error) && !empty($error)) {
+    echo $error;
+  }
   ?>
+  <form action="?send=1" method="post">
+    <h1>Forgot Password</h1>
+    <p>Enter your E-Mail to request a new password</p>
+    <input type="email" placeholder="E-Mail" name="email">
+    <input type="submit" value="Request Password">
+  </form>
 </body>
 </html>

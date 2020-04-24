@@ -50,6 +50,12 @@ p {
     color: #df832e;
 }
 
-.error-message {
+.success {
+    display: flex;
+    color: #5acc50;
+}
+
+.error-message,
+.success-message {
     padding-left: 10px;
 }
