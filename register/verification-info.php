@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
-  <title>Register Verification - EternityEsports</title>
+  <title>Register Verification</title>
 </head>
 <body>
   <h1>Registration Verification</h1>

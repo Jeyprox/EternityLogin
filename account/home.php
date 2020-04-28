@@ -1,3 +1,19 @@
+<?php
+  include "../database-login.php";
+
+  if (!isset($_SESSION['userid'])) {
+    header("location: ../login.php");
+  } else {
+    $selectedPage = "home";
+
+    // Get User ID
+    $userid = $_SESSION['userid'];
+    $statement = $pdo->prepare("SELECT * FROM users WHERE id = :userid");
+    $result = $statement->execute(array('userid' => $userid));
+    $user = $statement->fetch();
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,46 +26,7 @@
   <title>Eternity Account</title>
 </head>
 <body>
-  <nav class="sidebar">
-    <ul class="sidebar-nav">
-      <li class="home sidebar-item">
-        <a href="./home.php" class="sidebar-link sidebar-link-active">
-          <i class="fas fa-user sidebar-icon"></i>
-          <span class="sidebar-text">Home</span>
-        </a>
-      </li>
-      <li class="personal-info sidebar-item">
-        <a href="./personal-info.php" class="sidebar-link">
-          <i class="fas fa-id-card sidebar-icon"></i>
-          <span class="sidebar-text">Personal Info</span>
-        </a>
-      </li>
-      <li class="player-info sidebar-item">
-        <a href="./player-info.php" class="sidebar-link">
-          <i class="fas fa-user-cog sidebar-icon"></i>
-          <span class="sidebar-text">Player Info</span>
-        </a>
-      </li>
-      <li class="team-overview sidebar-item">
-        <a href="./team-overview.php" class="sidebar-link">
-          <i class="fas fa-users sidebar-icon"></i>
-          <span class="sidebar-text">Team Overview</span>
-        </a>
-      </li>
-      <li class="applications sidebar-item">
-        <a href="./applications.php" class="sidebar-link">
-          <i class="fas fa-user-tie sidebar-icon"></i>
-          <span class="sidebar-text">Applications</span>
-        </a>
-      </li>
-      <li class="logout sidebar-item">
-        <a href="../logout.php" class="sidebar-link">
-          <i class="fas fa-sign-out-alt sidebar-icon"></i>
-          <span class="sidebar-text">Logout</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <?php include "sidebar.php" ?>
   <div class="settings-container">
     <div class="settings-title">
       <h1>Welcome, TODO</h1>

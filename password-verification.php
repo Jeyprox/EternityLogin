@@ -46,10 +46,11 @@ if (!isset($_SESSION['userid'])) {
   ?>
 
     <form action="?login=1" method="post">
-      <h1>Welcome</h1>
-      <p><?php echo $user['email'] ?></p>
-
-      <p>To continue, please verify that it's you.</p>
+      <div class="form-title">
+        <h1>Welcome</h1>
+        <p><?php echo $user['email'] ?></p>
+        <p>To continue, please verify that it's you.</p>
+      </div>
       <input type="password" placeholder="Password" maxlength="128" name="passwort">
       <?php
       if (isset($errorMessage)) {

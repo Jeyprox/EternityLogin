@@ -61,11 +61,11 @@ if (isset($_GET['send'])) {
 </head>
 <body>
   <?php
-  if (isset($error) && !empty($error)) {
+  if (isset($error)) {
     echo $error;
   }
   ?>
-  <form action="?send=1" method="post">
+  <form action="forgot-password.php" method="post">
     <h1>Forgot Password</h1>
     <p>Enter your E-Mail to request a new password</p>
     <input type="email" placeholder="E-Mail" name="email">

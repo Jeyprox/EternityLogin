@@ -1,13 +1,13 @@
 .settings-content {
     border-radius: 10px;
-    border: 1px solid #999999;
+    box-shadow: var(--box-shadow-big);
     width: 800px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.personal-info-item {
+.settings-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -17,15 +17,15 @@
     box-shadow: none;
 }
 
-.personal-info-item-hover {
+.settings-item-hover {
     background-color: rgba(50, 50, 50, 0.1);
 }
 
-.personal-info-item-focus {
+.settings-item-focus {
     box-shadow: var(--shadow-small-inside);
 }
 
-.personal-info-item:first-child {
+.settings-item:first-child {
     border-radius: 10px 10px 0 0;
 }
 

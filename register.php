@@ -96,7 +96,7 @@ if (isset($_POST['submit-form'])) {
       $url_registrationcode = 'http://' . $ip . '/register/verify-account.php?email=' . $email . '&code=' . $registrationcode;
 
       $text = '<html><body style="font-size: 15px; text-align: center; max-width: 800px;">';
-      $text .= '<img src="LoginTest/img/Banner.png" alt="EternityBanner" width="800px" >';
+      $text .= '<img src="http://' . $ip . '/img/Banner.png" alt="EternityBanner" width="800px" >';
       $text .= '<div>';
       $text .= '<p>Hello ' . $username . ',</p>';
       $text .= '<p>thank you for creating an account on EternityEsports. We\'re happy to have you :)</p>';

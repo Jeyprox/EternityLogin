@@ -1,16 +1,13 @@
-.settings-container {
-    max-width: 900px;
-}
-
 .settings-content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .settings-item {
     border-radius: 10px;
-    border: 1px solid #999999;
+    box-shadow: var(--shadow-small-outside);
     position: relative;
     width: 400px;
     margin: 15px 20px;

@@ -37,8 +37,10 @@ if (!isset($_SESSION['userid'])) {
 </head>
 <body>
   <form action="change-password.php" method="post">
-    <h1>Change Password</h1>
-    <p>For <?php echo $user['username'] ?></p>
+    <div class="form-title">
+      <h1>Change Password</h1>
+      <p>Request a password change as <?php echo $user['username'] ?></p>
+    </div>
     <input type="password" placeholder="New Password" maxlength="128" minlength="8" name="passwort" />
     <input type="password" placeholder="Confirm Password" maxlength="128" minlength="8" name="passwort2" />
 

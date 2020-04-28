@@ -35,7 +35,7 @@ if (isset($_GET['login'])) {
     setcookie("identifier", $identifier, time() + (3600 * 24 * 365)); //1 year valid
     setcookie("securitytoken", $securitytoken, time() + (3600 * 24 * 365));
 
-    header('location: account/personal-info.php');
+    header('location: account/home.php');
   } else {
     $errorMessage = 'Invalid E-Mail or Password';
   }

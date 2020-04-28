@@ -1,23 +1,19 @@
 $(".change-input input")
     .focus(function () {
-        $(this)
-            .parents(".personal-info-item")
-            .addClass("personal-info-item-focus");
-        $(".personal-info-item").removeClass("personal-info-item-hover");
+        $(this).parents(".settings-item").addClass("settings-item-focus");
+        $(".settings-item").removeClass("settings-item-hover");
     })
     .blur(function () {
-        $(this)
-            .parents(".personal-info-item")
-            .removeClass("personal-info-item-focus");
+        $(this).parents(".settings-item").removeClass("settings-item-focus");
     });
 
-$(".personal-info-item").hover(
+$(".settings-item").hover(
     function () {
-        if (!$(this).hasClass("personal-info-item-focus")) {
-            $(this).addClass("personal-info-item-hover");
+        if (!$(this).hasClass("settings-item-focus")) {
+            $(this).addClass("settings-item-hover");
         }
     },
     function () {
-        $(this).removeClass("personal-info-item-hover");
+        $(this).removeClass("settings-item-hover");
     }
 );
