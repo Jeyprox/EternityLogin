@@ -89,7 +89,7 @@ if (isset($_POST['submit-form'])) {
       $subject = "Account Verification for EternityEsports";
 
       $headers = "From: Eternity Info <" . $from . ">\r\n";
-      $headers .= "MIME-Version: 1.0\r\n"; 
+      $headers .= "MIME-Version: 1.0\r\n";
       $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
       $ip = "192.168.2.133/LoginTest";
@@ -107,7 +107,7 @@ if (isset($_POST['submit-form'])) {
       $text .= '<p>Have fun! Your Eternity Team <3</p>';
       $text .= '<p style="font-size: 0.9rem">In case this wasn\'t you, just ignore this E-Mail.</p>';
       $text .= '</body></html>';
-  
+
       mail($to, $subject, $text, $headers);
 
       header("location: register/verification-info.php");

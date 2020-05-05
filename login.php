@@ -32,7 +32,7 @@ if (isset($_GET['login'])) {
 
     $insert = $pdo->prepare("INSERT INTO securitytokens (user_id, identifier, securitytoken) VALUES (:user_id, :identifier, :securitytoken)");
     $insert->execute(array('user_id' => $user['id'], 'identifier' => $identifier, 'securitytoken' => sha1($securitytoken)));
-    setcookie("identifier", $identifier, time() + (3600 * 24 * 365)); //1 year valid
+    setcookie("identifier", $identifier, time() + (3600 * 24 * 365)); // 1 year valid
     setcookie("securitytoken", $securitytoken, time() + (3600 * 24 * 365));
 
     header('location: account/home.php');

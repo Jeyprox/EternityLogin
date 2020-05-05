@@ -1,6 +1,16 @@
+.team-list {
+    max-width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .team-item {
-    width: 500px;
-    margin: 20px 0;
+    display: block;
+    flex: 1 1 45%;
+    width: 450px;
+    margin: 15px 10px;
     background: var(--background);
     box-shadow: var(--shadow-small-outside);
     border-radius: 10px;
@@ -13,12 +23,17 @@
     display: flex;
     align-items: center;
     font-weight: 400;
-    padding: 15px 25px;
 }
 
 .team-icon {
-    margin-right: 15px;
+    padding: 15px 25px;
+    padding-right: 10px;
     flex: 0 1 20%;
+}
+
+.team-icon img {
+    width: 100%;
+    height: 100%;
 }
 
 .team-content {
@@ -26,6 +41,9 @@
     justify-content: center;
     flex-direction: column;
     flex: 0 1 70%;
+    padding: 15px 25px;
+    margin-left: 15px;
+    border-left: 1px solid #999999;
 }
 
 .team-name {

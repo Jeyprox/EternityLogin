@@ -1,5 +1,4 @@
 <?php
-
 include "../database-login.php";
 
 if (!isset($_SESSION['userid'])) {
@@ -14,18 +13,25 @@ if (!isset($_SESSION['userid'])) {
   $result = $statement->execute(array('userid' => $userid));
   $user = $statement->fetch();
 
-  // Get Player
-  $statement = $pdo->prepare("SELECT * FROM players WHERE user_identifier = :userid");
-  $result = $statement->execute(array('userid' => $userid));
-  $player = $statement->fetch();
+  // Check for permission level
+  $permissionLevel = (int) $user["role"];
+  if ($permissionLevel > 0) {
+    // Get Player
+    $statement = $pdo->prepare("SELECT * FROM players WHERE user_identifier = :userid");
+    $result = $statement->execute(array('userid' => $userid));
+    $player = $statement->fetch();
 
-  // Get the teams
-  $teams = $pdo->query("SELECT * FROM teams ORDER BY avg_sr DESC")->fetchAll();
+    // Get the teams
+    $teams = $pdo->query("SELECT * FROM teams ORDER BY avg_sr DESC")->fetchAll();
+  } else {
+    header("location: home.php");
+  }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,6 +41,7 @@ if (!isset($_SESSION['userid'])) {
   <script src="https://kit.fontawesome.com/825b250593.js" crossorigin="anonymous"></script>
   <title>Team Overview</title>
 </head>
+
 <body>
   <?php include "sidebar.php" ?>
   <div class="settings-container">
@@ -46,20 +53,19 @@ if (!isset($_SESSION['userid'])) {
       <ul class="team-list">
         <?php
         foreach ($teams as $team) {
-          if($team["id"] == $player["team"] || $user["role"] == "Admin") {
+          if ($team["id"] == $player["team"] || (int) $user["role"] == 3) {
         ?>
-        <li class="team-item">
-          <!-- TODO: Create Team pages -->
-          <a href="../management/team/<?php echo $team["teamname"] ?>" class="team-link">
-            <div class="team-icon">
-              <img src="../img/team-logos/<?php echo $team["teamname"] ?>" alt="<?php echo $team["teamname"] ?>">
-            </div>
-            <div class="team-content">
-              <h1 class="team-name" style="color:<?php echo $team["color"] ?>"><?php echo $team["teamname"] ?></h1>
-              <p class="team-sr">Average Team SR: <?php echo $team["avg_sr"] ?></p>
-            </div>
-          </a>
-        </li>
+            <li class="team-item">
+              <a href="../management/team.php/?team=<?php echo $team["teamname"] ?>" class="team-link">
+                <div class="team-icon">
+                  <img src="../img/team-logos/<?php echo $team["teamname"] ?>" alt="<?php echo $team["teamname"] ?>">
+                </div>
+                <div class="team-content">
+                  <h1 class="team-name" style="color:<?php echo $team["color"] ?>"><?php echo $team["teamname"] ?></h1>
+                  <p class="team-sr">Average Team SR: <?php echo $team["avg_sr"] ?></p>
+                </div>
+              </a>
+            </li>
         <?php
           }
         }
@@ -68,4 +74,5 @@ if (!isset($_SESSION['userid'])) {
     </div>
   </div>
 </body>
+
 </html>

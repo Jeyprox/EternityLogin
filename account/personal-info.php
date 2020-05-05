@@ -102,21 +102,21 @@ if (!isset($_SESSION['userid'])) {
       <div class="settings-item">
         <p class="change-title">Name</p>
         <div class="change-input">
-          <input type="text" maxlength="32" name="firstname" value=<?php echo $user['firstname'] ?>>
+          <input type="text" maxlength="32" name="firstname" value="<?php echo $user["firstname"] ?>">
           <i class="fas fa-pen input-edit-icon"></i>
         </div>
       </div>
       <div class="settings-item">
         <p class="change-title">Username</p>
         <div class="change-input">
-          <input type="text" maxlength="32" name="username" value=<?php echo $user['username'] ?>>
+          <input type="text" maxlength="32" name="username" value="<?php echo $user["username"] ?>">
           <i class="fas fa-pen input-edit-icon"></i>
         </div>
       </div>
       <div class="settings-item">
         <p class="change-title">E-Mail</p>
         <div class="change-input">
-          <input type="email" maxlength="255" name="email" value=<?php echo $user['email'] ?>>
+          <input type="email" maxlength="255" name="email" value="<?php echo $user["email"] ?>">
           <i class="fas fa-pen input-edit-icon"></i>
         </div>
       </div>
@@ -136,14 +136,14 @@ if (!isset($_SESSION['userid'])) {
           <i class="fas fa-check-circle"></i>
           <p class="success-message"><?php echo $successMessage ?></p>
         </div>
-      <?php
-      } else if($error) {
+        <?php
+      } else if ($error) {
         foreach ($errorMessages as $errorMessage) {
-      ?>
-        <div class="error">
-          <i class="fas fa-exclamation-circle"></i>
-          <p class="error-message"><?php echo $errorMessage ?></p>
-        </div>
+        ?>
+          <div class="error">
+            <i class="fas fa-exclamation-circle"></i>
+            <p class="error-message"><?php echo $errorMessage ?></p>
+          </div>
       <?php
         }
       }
@@ -153,4 +153,5 @@ if (!isset($_SESSION['userid'])) {
   <script src="../js/jquery-3.4.1.min.js"></script>
   <script src="../js/account.js"></script>
 </body>
+
 </html>
